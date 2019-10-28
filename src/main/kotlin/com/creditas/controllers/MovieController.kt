@@ -130,4 +130,22 @@ class MovieController
         return null;
     }
     // Example: http://localhost:8080/movie/TheFoo/title
+
+    @GetMapping ("/movie/director/{str}")
+    fun getMoviesByDirector(
+            @PathVariable("str")
+            str: String
+    ): ArrayList<Movie>?
+    {
+        val result: ArrayList<Movie> = ArrayList()
+        for (movie in movies){
+            if (movie.director.equals(str)) {
+                result.add(movie);
+            }
+        }
+
+        return result;
+    }
+    // Example: http://localhost:8080/movie/director/Foo The Director
 }
+// ###95how@tero$
