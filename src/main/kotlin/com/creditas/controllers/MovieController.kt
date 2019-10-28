@@ -114,4 +114,20 @@ class MovieController
         return null;
     }
     // Example: http://localhost:8080/movie/title/TheFoo
+
+    @GetMapping ("/movie/{title}/title")
+    fun getMovieByTitle2b(
+            @PathVariable("title")
+            title: String
+    ): Movie?
+    {
+        for (movie in movies){
+            if (movie.title.equals(title)) {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+    // Example: http://localhost:8080/movie/TheFoo/title
 }
