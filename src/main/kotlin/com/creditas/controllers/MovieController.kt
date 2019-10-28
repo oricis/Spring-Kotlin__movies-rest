@@ -138,7 +138,7 @@ class MovieController
     ): ArrayList<Movie>?
     {
         val result: ArrayList<Movie> = ArrayList()
-        for (movie in movies){
+        for (movie in movies) {
             if (movie.director.equals(str)) {
                 result.add(movie);
             }
@@ -147,5 +147,25 @@ class MovieController
         return result;
     }
     // Example: http://localhost:8080/movie/director/Foo The Director
+    @GetMapping ("/movie/director/{str1}/title/{str2}")
+    fun getMoviesByDirector(
+            @PathVariable("str1")
+            str1: String,
+            @PathVariable("str2")
+            str2: String
+            ): Movie?
+    {
+        val result: ArrayList<Movie> = ArrayList()
+        for (movie in movies) {
+            if (movie.director.equals(str1)) {
+                if (movie.title.equals(str2)) {
+                    return movie;
+                }
+            }
+        }
+
+        return null;
+    }
+    // Example: http://localhost:8080/movie/director/Foo The Director/title/TheFoo
 }
 // ###95how@tero$
