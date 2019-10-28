@@ -1,9 +1,7 @@
 package com.creditas.controllers
 
 import com.creditas.models.Movie
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class MovieController
@@ -68,6 +66,22 @@ class MovieController
         return null;
     }
     // Example: http://localhost:8080/movie?id=2
+
+    @RequestMapping ("/movie/{id}")
+    fun getMovieById(
+            @PathVariable("id")
+            id: Int
+    ): Movie?
+    {
+        for (movie in movies){
+            if (movie.id.equals(id)) {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+    // Example: http://localhost:8080/movie/2
 
     @GetMapping ("/movie-title")
     fun getMovieByTitle(
