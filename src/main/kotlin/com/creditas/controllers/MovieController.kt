@@ -19,7 +19,7 @@ class MovieController
             ),
             Movie(
                     2,
-                    "Soy Foo",
+                    "TheFoo",
                     "Foo The Director",
                     2015,
                     36.00F,
@@ -67,4 +67,21 @@ class MovieController
 
         return null;
     }
+    // Example: http://localhost:8080/movie?id=2
+
+    @GetMapping ("/movie-title")
+    fun getMovieByTitle(
+            @RequestParam(value = "title", defaultValue = "")
+            title: String
+    ): Movie?
+    {
+        for (movie in movies){
+            if (movie.title.equals(title)) {
+                return movie;
+            }
+        }
+
+        return null;
+    }
+    // Example: http://localhost:8080/movie-title?title=TheFoo
 }
